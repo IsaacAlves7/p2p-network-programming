@@ -9,5 +9,3 @@ Para testar este exemplo:
 1. Execute o script `peer_server.py` em um terminal.
 2. Execute o script `peer_client.py` em outro terminal.
 3. Observe a troca de mensagens entre os pares.
-
-## Production
