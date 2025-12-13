@@ -2,6 +2,8 @@
 ✳️ It's a repository of P2P networking programming.
 
 ## Development
+<img src="https://github.com/user-attachments/assets/fabb9362-8950-46ef-a52e-17052e88b33f" align="right" height="777">
+
 Este é apenas um exemplo simples de comunicação P2P em Python usando sockets.
 
 Para testar este exemplo:
