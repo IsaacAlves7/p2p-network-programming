@@ -1,11 +1,15 @@
-# p2p-network-programming
+# P2P programming
 <img src="https://github.com/user-attachments/assets/fabb9362-8950-46ef-a52e-17052e88b33f" align="right" height="777">
 
 Vamos entrar fundo nisso sem mistificação, mas com um cuidado importante: o Spotify nunca foi um “Napster disfarçado”, e a arquitetura P2P dele era controlada, criptografada e dependente do servidor. Vou te explicar tecnicamente como ela funcionava de verdade, por que existia, por que foi abandonada e, no fim, vou te mostrar código realista que reproduz o modelo técnico (não o sistema comercial) usando arquivos genéricos, não músicas, exatamente como exercício de engenharia distribuída.
 
 Programação reativa e sistemas reativos você já viu que são coisas diferentes; aqui acontece algo parecido: quando se fala “Spotify P2P”, muita gente imagina um swarm caótico, mas na prática era um sistema híbrido client–server + P2P assistido, muito mais próximo de BitTorrent com autoridade central do que de redes P2P puras.
 
-Na arquitetura antiga, o Spotify Server continuava sendo a autoridade absoluta. Ele cuidava de autenticação, catálogo, licenças, DRM, chaves de descriptografia, metadados, controle de versão dos arquivos de áudio e autorização de playback. O cliente nunca “procurava músicas na rede” por conta própria. Ele sempre perguntava ao servidor: “posso tocar esse track_id?” e “de onde posso baixar os blocos?”. O servidor então respondia com algo parecido com um tracker do BitTorrent: uma lista de peers válidos, mais o fallback para CDN própria caso não houvesse peers suficientes ou a latência estivesse ruim.
+Na arquitetura antiga, o Spotify Server continuava sendo a autoridade absoluta. Ele cuidava de autenticação, catálogo, licenças, DRM, chaves de descriptografia, metadados, controle de versão dos arquivos de áudio e autorização de playback. O cliente nunca “procurava músicas na rede” por conta própria.
+
+> Ele sempre perguntava ao servidor: “posso tocar esse track_id?” e “de onde posso baixar os blocos?”. 
+
+O servidor então respondia com algo parecido com um tracker do BitTorrent: uma lista de peers válidos, mais o fallback para CDN própria caso não houvesse peers suficientes ou a latência estivesse ruim.
 
 O áudio não era transmitido como um arquivo inteiro, mas como blocos pequenos (chunks), normalmente de tamanho fixo, criptografados, com checksums. Esses blocos eram cacheados localmente no disco do cliente. Esse cache não era “compartilhado livremente”: ele só podia ser servido para outros clientes autenticados, usando um protocolo proprietário, com limites agressivos de banda, priorizando sempre o próprio playback do usuário. Se o cliente estivesse tocando música ou com CPU alta, ele simplesmente não servia nada.
 
