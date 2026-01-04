@@ -1,5 +1,5 @@
 # P2P programming
-<img src="https://github.com/user-attachments/assets/fabb9362-8950-46ef-a52e-17052e88b33f" align="right" height="777">
+<img src="https://github.com/user-attachments/assets/fabb9362-8950-46ef-a52e-17052e88b33f" align="right" height="377">
 
 Vamos entrar fundo nisso sem mistificação, mas com um cuidado importante: o Spotify nunca foi um “Napster disfarçado”, e a arquitetura P2P dele era controlada, criptografada e dependente do servidor. Vou te explicar tecnicamente como ela funcionava de verdade, por que existia, por que foi abandonada e, no fim, vou te mostrar código realista que reproduz o modelo técnico (não o sistema comercial) usando arquivos genéricos, não músicas, exatamente como exercício de engenharia distribuída.
 
